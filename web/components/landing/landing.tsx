@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpRightIcon } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { DemoSignIn } from "@/components/landing/demo-sign-in";
@@ -63,6 +63,16 @@ export function Landing({ demo, mcpUrl, billingEnabled = false }: LandingProps) 
                 <ArrowDownIcon aria-hidden="true" />
               </a>
             </div>
+            <p className="text-sm text-muted-foreground">
+              Open source under AGPL-3.0.{" "}
+              <a
+                href={SOURCE_URL}
+                className="inline-flex items-center gap-0.5 font-medium text-foreground underline-offset-4 hover:underline"
+              >
+                View the code on GitHub
+                <ArrowUpRightIcon aria-hidden="true" className="size-3.5" />
+              </a>
+            </p>
             <ul aria-label="Works with" className="sr-only">
               {ASSISTANTS.map((name) => (
                 <li key={name}>{name}</li>

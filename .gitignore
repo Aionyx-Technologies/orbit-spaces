@@ -34,9 +34,8 @@ data/
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
+.vscode/
+.impeccable/
 
 # Local agent scratch (brainstorm mockups, plan ledgers)
 .superpowers/
