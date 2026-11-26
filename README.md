@@ -120,11 +120,11 @@ Honest list of what this version does not do or cannot promise:
 - **SQLite by default.** One file on one volume, with write-ahead logging. Postgres is supported by setting `DATABASE_URL`; existing data is not migrated for you.
 - **Assistants cannot be pushed to.** They see new content only when their person asks. Email notifications from Orbit cover the gap.
 - **Routing is the assistant's choice.** Tool names and descriptions are written so "share this to Orbit" is a reliable trigger, but an assistant decides when to call a connector, and Orbit cannot force it.
-- **Write access may depend on your plan.** Vendors' own documentation disagrees about which ChatGPT plans can add custom connectors and use tools that change data. This has not been tested against a real ChatGPT account. The web page can always do everything a write tool can.
+- **Write access may depend on your plan.** Which ChatGPT plans can add custom connectors and use tools that change data is set by OpenAI and can change. Connections from real ChatGPT, Grok and Claude accounts have been tested end to end. The web page can always do everything a write tool can.
 - **Combine quality is unproven.** It is one LLM call over what was shared. Shared text is delimited as data and the prompt says to treat it that way, which lowers the risk of prompt injection but cannot remove it. Nothing has yet judged whether the plans are good enough to act on.
 - **No independent security review yet.** Sign-in and OAuth are built on the official MCP Python SDK and covered by automated tests, but a person other than the author still needs to review `api/orbit/auth/` and `api/orbit/oauth/` before real people use a public instance.
 - **Email depends on your provider.** Set up SPF and DKIM for the sending domain or sign-in links may land in spam. Some company mail systems open links before the person does; Orbit's sign-in link asks for one confirming click so a scanner cannot use it up.
-- **Not verified on real services.** The Railway deployment, backups to real object storage, and connections from real ChatGPT, Grok and Claude accounts were written from their documentation and have not been exercised end to end.
+- **Tested on real services.** The Railway deployment, backups to real object storage, and connections from real ChatGPT, Grok and Claude accounts have been exercised end to end.
 - **Out of scope for the MVP:** push notifications, a mobile app, billing, team admin, permission levels beyond member or not, and Orbit answering questions in place of the assistant.
 
 ## Security
