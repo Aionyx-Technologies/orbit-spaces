@@ -1,0 +1,7 @@
+{% extends "email/base.html" %}
+{% block body %}
+<h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;">{{ joiner }} joined "{{ space }}"</h1>
+<p style="margin:0 0 20px 0;">Your invite was accepted. You can both share into the space now.</p>
+<p style="margin:0;"><a href="{{ link }}" style="display:inline-block;background:#524ce3;color:#fbfbff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:12px;">Open the space</a></p>
+{% endblock %}
+{% block footer %}You get this email because notifications are on for this space. <a href="{{ settings_link }}" style="color:#524ce3;">Turn them off in Settings</a>.{% endblock %}

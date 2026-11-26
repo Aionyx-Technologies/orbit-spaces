@@ -1,0 +1,24 @@
+id = "dinner-party"
+name = "Dinner party"
+icon = "🍽️"
+order = 40
+description = "Host a meal together"
+plan_sections = ["Menu", "Who brings what", "Dietary needs", "Schedule", "To settle"]
+combine_hint = "Make sure every dietary need has something to eat. Flag it when two people bring the same dish."
+tips = ["Say what you can bring", "Share any dietary needs", "Add the time guests should arrive"]
+
+[[facts]]
+key = "Date"
+hint = "When the dinner is"
+
+[[facts]]
+key = "Host"
+hint = "Who is hosting"
+
+[[facts]]
+key = "Headcount"
+hint = "How many people are coming"
+
+[[facts]]
+key = "Dietary needs"
+hint = "Allergies and diets to cater for"

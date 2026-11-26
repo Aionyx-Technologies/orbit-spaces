@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest something Orbit should do
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Orbit is deliberately small. Please check the non-goals in docs/superpowers/specs/2026-11-19-orbit-mvp-design.md before asking for something big.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do
+      description: Describe the situation first. The solution can come second.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Orbit to do
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What do you do today instead

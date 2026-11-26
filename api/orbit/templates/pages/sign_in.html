@@ -1,0 +1,57 @@
+{% extends "pages/base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+    <h1>Sign in to Orbit</h1>
+    <p class="muted">We will email you a one-time link. There is no password to remember.</p>
+{% if error %}
+    <p class="alert" role="alert">{{ error }}</p>
+{% endif %}
+{% if context_note %}
+    <p class="notice">{{ context_note }}</p>
+{% endif %}
+    <form method="post" action="/auth/sign-in" class="stack">
+      <div>
+        <label for="email">Email</label>
+        <div class="field">
+          <svg class="field-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="3"/>
+            <path d="m4 7.5 8 5.5 8-5.5"/>
+          </svg>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="name@company.com" value="{{ email }}" required autofocus>
+        </div>
+      </div>
+      <input type="hidden" name="next" value="{{ next_path }}">
+      <input type="hidden" name="invite" value="{{ invite }}">
+      <p class="muted small">By continuing, you agree to the <a href="/terms">Terms</a> and confirm you have read the <a href="/privacy">Privacy policy</a>.</p>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">
+          Email me a link
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+    <section class="next" aria-labelledby="next-title">
+      <h2 id="next-title" class="next-title">What happens next</h2>
+      <ol class="trail">
+        <li>An email from Orbit lands in your inbox.</li>
+        <li>Open its link within {{ link_minutes }} minutes. It works once.</li>
+        <li>You are signed in, right where you were heading.</li>
+      </ol>
+      <p class="muted small">New to Orbit? The same link sets up your account.</p>
+    </section>
+{% if demo_people %}
+    <p class="muted small">Demo mode is on. Skip the email and sign in as a test person.</p>
+    <div class="actions">
+{% for person in demo_people %}
+      <form method="post" action="/auth/demo">
+        <input type="hidden" name="person" value="{{ person.key }}">
+        <input type="hidden" name="next" value="{{ next_path }}">
+        <button class="btn btn-secondary" type="submit">Continue as {{ person.name }}</button>
+      </form>
+{% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

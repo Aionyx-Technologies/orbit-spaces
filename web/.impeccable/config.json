@@ -1,0 +1,15 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": ["app/globals.css"],
+        "createdAt": "2026-11-21T05:48:19.797Z",
+        "reason": "user confirmed: keep .source-rail accent as designed"
+      }
+    ]
+  }
+}

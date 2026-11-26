@@ -1,0 +1,512 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@property --spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  color-scheme: light dark;
+  --radius: 1.25rem;
+
+  --background: light-dark(oklch(0.985 0.004 275), oklch(0.155 0.016 275));
+  --foreground: light-dark(oklch(0.21 0.03 275), oklch(0.965 0.008 275));
+  --card: light-dark(oklch(1 0 0), oklch(0.2 0.018 275));
+  --card-foreground: var(--foreground);
+  --popover: light-dark(oklch(1 0 0), oklch(0.225 0.02 275));
+  --popover-foreground: var(--foreground);
+  --surface-2: light-dark(oklch(0.966 0.009 275), oklch(0.24 0.02 275));
+  --primary: light-dark(oklch(0.52 0.22 277), oklch(0.76 0.14 280));
+  --primary-hover: light-dark(oklch(0.47 0.22 277), oklch(0.82 0.12 280));
+  --primary-foreground: light-dark(oklch(0.99 0.005 277), oklch(0.17 0.03 277));
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-2);
+  --muted-foreground: light-dark(oklch(0.46 0.035 275), oklch(0.74 0.03 275));
+  --accent: light-dark(oklch(0.945 0.04 277), oklch(0.3 0.07 277));
+  --accent-foreground: light-dark(oklch(0.3 0.12 277), oklch(0.93 0.04 277));
+  --destructive: light-dark(oklch(0.5 0.2 27), oklch(0.76 0.15 25));
+  --destructive-foreground: light-dark(oklch(0.99 0.005 27), oklch(0.17 0.03 25));
+  --destructive-soft: light-dark(oklch(0.95 0.03 27), oklch(0.27 0.06 25));
+  --ember: light-dark(oklch(0.8 0.15 70), oklch(0.82 0.15 75));
+  --ember-foreground: light-dark(oklch(0.28 0.07 60), oklch(0.22 0.05 60));
+  --ember-text: light-dark(oklch(0.46 0.12 55), oklch(0.85 0.13 75));
+  --ember-soft: light-dark(oklch(0.955 0.045 75), oklch(0.3 0.06 70));
+  --ion: light-dark(oklch(0.5 0.11 225), oklch(0.82 0.11 210));
+  --success: light-dark(oklch(0.46 0.12 160), oklch(0.8 0.13 160));
+  --border: light-dark(oklch(0.915 0.01 275), oklch(1 0 0 / 0.1));
+  --line-strong: light-dark(oklch(0.84 0.015 275), oklch(1 0 0 / 0.18));
+  --input: oklch(0.62 0.03 275);
+  --ring: var(--primary);
+
+  --shadow-ink: light-dark(oklch(0.25 0.08 275 / 0.14), oklch(0 0 0 / 0.55));
+  --shadow-soft: light-dark(oklch(0.25 0.08 275 / 0.05), oklch(0 0 0 / 0.25));
+  --shadow-edge: light-dark(oklch(1 0 0 / 0), oklch(1 0 0 / 0.06));
+  --glass: light-dark(oklch(1 0 0 / 0.72), oklch(0.2 0.018 275 / 0.7));
+  --card-shadow:
+    0 1px 2px var(--shadow-soft), 0 14px 30px -16px var(--shadow-ink),
+    inset 0 1px 0 var(--shadow-edge);
+  --card-shadow-hover:
+    0 1px 2px var(--shadow-soft), 0 26px 44px -20px var(--shadow-ink),
+    inset 0 1px 0 var(--shadow-edge);
+
+  --aurora-a: light-dark(oklch(0.93 0.07 277 / 0.85), oklch(0.34 0.13 277 / 0.5));
+  --aurora-b: light-dark(oklch(0.95 0.05 210 / 0.75), oklch(0.32 0.09 215 / 0.38));
+  --aurora-c: light-dark(oklch(0.96 0.05 70 / 0.5), oklch(0.34 0.09 55 / 0.22));
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-surface-2: var(--surface-2);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-ember: var(--ember);
+  --color-ember-foreground: var(--ember-foreground);
+  --color-ember-text: var(--ember-text);
+  --color-ember-soft: var(--ember-soft);
+  --color-ion: var(--ion);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-line-strong: var(--line-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 0.625rem);
+  --radius-md: calc(var(--radius) - 0.375rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+  --radius-2xl: calc(var(--radius) + 1rem);
+  --font-sans:
+    var(--font-sans-face, "Geist"), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-rise: rise 0.6s var(--ease-out-expo) both;
+  --animate-beacon: beacon 2.4s ease-out infinite;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes beacon {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.75;
+  }
+  80%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes orbit {
+  to {
+    --spin: 360deg;
+  }
+}
+
+@utility shadow-card {
+  box-shadow: var(--card-shadow);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--card-shadow-hover);
+}
+
+@utility text-display {
+  font-size: clamp(2.5rem, 1.7rem + 3.2vw, 4.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+@utility heading-page {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+
+  @media (width < 30rem) {
+    font-size: 1.75rem;
+  }
+}
+
+@utility heading-section {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+@utility heading-card {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.375;
+}
+
+@utility text-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@utility glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  backdrop-filter: blur(20px) saturate(1.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--background);
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    position: relative;
+    background: transparent;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(62rem 34rem at 12% -12%, var(--aurora-a), transparent 70%),
+      radial-gradient(48rem 28rem at 94% -6%, var(--aurora-b), transparent 70%),
+      radial-gradient(40rem 24rem at 60% 4%, var(--aurora-c), transparent 72%);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  [role="tab"],
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 28%, transparent);
+    color: inherit;
+  }
+}
+
+@layer components {
+  .cover {
+    --h: 277;
+    background:
+      radial-gradient(
+        110% 90% at 10% 0%,
+        light-dark(oklch(0.89 0.09 var(--h)), oklch(0.44 0.17 var(--h))) 0%,
+        transparent 64%
+      ),
+      radial-gradient(
+        90% 80% at 100% 100%,
+        light-dark(oklch(0.91 0.07 calc(var(--h) + 55)), oklch(0.37 0.14 calc(var(--h) + 55))) 0%,
+        transparent 62%
+      ),
+      light-dark(oklch(0.965 0.016 var(--h)), oklch(0.215 0.032 var(--h)));
+  }
+
+  .cover-ring {
+    fill: none;
+    stroke: light-dark(oklch(0.4 0.1 var(--h) / 0.28), oklch(0.95 0.04 var(--h) / 0.26));
+    stroke-width: 1;
+  }
+
+  .cover-core {
+    fill: light-dark(oklch(0.6 0.19 var(--h)), oklch(0.84 0.14 var(--h)));
+  }
+
+  .source-fill {
+    --h: 277;
+    --c: 0.14;
+    fill: light-dark(oklch(0.62 var(--c) var(--h)), oklch(0.8 var(--c) var(--h)));
+    stroke: var(--card);
+    stroke-width: 1.5;
+  }
+
+  .satellite {
+    --a: calc(var(--a0) + var(--spin));
+    transform: translate(
+      calc(var(--cx, 160px) + cos(var(--a)) * var(--rx) * 1px),
+      calc(var(--cy, 100px) + sin(var(--a)) * var(--ry) * 1px)
+    );
+    animation: orbit var(--dur, 48s) linear infinite;
+    animation-play-state: paused;
+  }
+
+  .hero-satellite {
+    animation-play-state: running;
+  }
+
+  .tilt-card:hover .satellite,
+  .tilt-card:focus-within .satellite {
+    animation-play-state: running;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 0%),
+      light-dark(oklch(0.72 0.14 277 / 0.14), oklch(0.8 0.13 277 / 0.12)),
+      transparent 62%
+    );
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .source {
+    --h: 277;
+    --c: 0.14;
+    background: light-dark(oklch(0.62 var(--c) var(--h)), oklch(0.78 var(--c) var(--h)));
+  }
+
+  .source-soft {
+    --h: 277;
+    --c: 0.14;
+    background: light-dark(
+      oklch(0.95 calc(var(--c) * 0.3) var(--h)),
+      oklch(0.3 calc(var(--c) * 0.5) var(--h))
+    );
+    color: light-dark(
+      oklch(0.38 calc(var(--c) * 0.9) var(--h)),
+      oklch(0.9 calc(var(--c) * 0.7) var(--h))
+    );
+  }
+
+  .ai-frame {
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      linear-gradient(
+          135deg,
+          color-mix(in oklab, var(--primary) 85%, transparent),
+          color-mix(in oklab, var(--ion) 70%, transparent) 55%,
+          color-mix(in oklab, var(--ember) 80%, transparent)
+        )
+        border-box;
+  }
+
+  /* A deep indigo band for the privacy promises, the same in both themes so it
+     reads as a pause in the page rather than another card. */
+  .promise-band {
+    background:
+      radial-gradient(
+        80% 120% at 100% 0%,
+        light-dark(oklch(0.36 0.12 280), oklch(0.32 0.1 280)) 0%,
+        transparent 60%
+      ),
+      light-dark(oklch(0.235 0.06 277), oklch(0.215 0.045 277));
+    color: oklch(0.97 0.01 277);
+  }
+
+  .promise-muted {
+    color: oklch(0.84 0.03 277);
+  }
+
+  .promise-icon {
+    background: oklch(1 0 0 / 0.08);
+    color: oklch(0.85 0.1 280);
+    box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.12);
+  }
+
+  .source-rail {
+    --h: 277;
+    --c: 0.14;
+    position: relative;
+  }
+
+  .source-rail::before {
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    bottom: 1.25rem;
+    left: 0;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: light-dark(oklch(0.62 var(--c) var(--h)), oklch(0.8 var(--c) var(--h)));
+  }
+
+  .scroll-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 1rem,
+      #000 calc(100% - 1rem),
+      transparent 100%
+    );
+  }
+}
+
+@keyframes dock {
+  from {
+    opacity: 0.35;
+    filter: blur(6px);
+    transform: translate(-1.5rem, 0.75rem) scale(0.96);
+  }
+}
+
+/* Shared messages drift into place as the section scrolls into view.
+   Browsers without scroll-driven animations, and anyone who asks for less
+   motion, see them already in place. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dock {
+      animation: dock linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+
+/* The assistant named in the hero's paste-it caption rolls up into place. */
+@keyframes ticker-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(0.5em);
+  }
+}
+
+.ticker-in {
+  animation: ticker-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Picking an example space brings its feed in one item after another.
+   Anyone who asks for less motion sees it already in place. */
+@keyframes example-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .example-in {
+    animation: example-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+}
+
+/* In the pinned story, the parts of each picture arrive one after another as
+   its step becomes active. Narrow screens, where every picture is shown in
+   place, and anyone who asks for less motion see them already there. */
+@media (width >= 48rem) and (prefers-reduced-motion: no-preference) {
+  .story-panel .story-in {
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 90ms + 120ms);
+  }
+
+  .story-panel:not([data-active]) .story-in {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(0.875rem);
+    transition-delay: 0s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  body::before {
+    display: none;
+  }
+
+  .spotlight::before {
+    display: none;
+  }
+}
+
+@media print {
+  body::before {
+    display: none;
+  }
+}

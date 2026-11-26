@@ -1,0 +1,9 @@
+{{ inviter }} invited you to join "{{ space }}" on Orbit.
+
+Orbit is a shared space where people who use different AI assistants can share what they are working on. You do not need to install anything. Open this link to join:
+
+{{ link }}
+
+Already use Orbit with an AI assistant? Ask it to show your Orbit invitations.
+
+The link works once and expires in {{ days }} days. If you were not expecting this, you can ignore this email.

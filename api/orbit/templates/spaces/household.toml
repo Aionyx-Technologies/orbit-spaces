@@ -1,0 +1,24 @@
+id = "household"
+name = "Household"
+icon = "🏠"
+order = 30
+description = "Groceries, bills and chores in one place"
+plan_sections = ["Groceries", "Bills and splitting", "Chores", "Coming up", "To settle"]
+combine_hint = "Merge everyone's grocery additions into one list without duplicates, grouped by aisle. Never assign a chore that nobody named."
+tips = ["Add to the grocery list as you run out", "Share bills when they arrive", "Say which chores you will take"]
+
+[[facts]]
+key = "People"
+hint = "Who lives here"
+
+[[facts]]
+key = "Rent"
+hint = "Amount and how it is split"
+
+[[facts]]
+key = "Bill due dates"
+hint = "Which bills are due and when"
+
+[[facts]]
+key = "Shopping day"
+hint = "When the shopping happens"

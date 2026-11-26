@@ -1,0 +1,24 @@
+id = "event"
+name = "Event"
+icon = "🎉"
+order = 50
+description = "Plan a party, wedding or reunion"
+plan_sections = ["Venue", "Guests", "Vendors and bookings", "Schedule", "Costs", "To settle"]
+combine_hint = "Keep the date, headcount and budget fixed unless someone proposes a change. Put every change under To settle."
+tips = ["Share venue options", "Add the guest list", "Note what has already been booked"]
+
+[[facts]]
+key = "Date"
+hint = "When the event is"
+
+[[facts]]
+key = "Location"
+hint = "Where it takes place"
+
+[[facts]]
+key = "Headcount"
+hint = "How many guests"
+
+[[facts]]
+key = "Budget"
+hint = "Total budget"

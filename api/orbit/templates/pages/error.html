@@ -1,0 +1,11 @@
+{% extends "pages/base.html" %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+    <h1>{{ heading }}</h1>
+    <p>{{ message }}</p>
+{% if action_href is defined and action_href %}
+    <div class="actions">
+      <a class="btn btn-primary" href="{{ action_href }}">{{ action_label }}</a>
+    </div>
+{% endif %}
+{% endblock %}

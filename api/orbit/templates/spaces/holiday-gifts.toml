@@ -1,0 +1,20 @@
+id = "holiday-gifts"
+name = "Holiday gifts"
+icon = "🎁"
+order = 20
+description = "Coordinate gifts so nobody doubles up"
+plan_sections = ["Who's getting what", "Ideas", "Budget", "Bought", "To settle"]
+combine_hint = "Group ideas by recipient and keep within budget. If two people plan the same gift, list it under To settle rather than choosing who buys it."
+tips = ["Don't invite anyone you're buying for", "Add gift ideas for each person", "Say what you have already bought"]
+
+[[facts]]
+key = "Budget"
+hint = "Per person"
+
+[[facts]]
+key = "Recipients"
+hint = "Who the gifts are for"
+
+[[facts]]
+key = "Deadline"
+hint = "When gifts need to be ready"

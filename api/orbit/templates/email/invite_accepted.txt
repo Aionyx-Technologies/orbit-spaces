@@ -1,0 +1,5 @@
+{{ joiner }} joined "{{ space }}" on Orbit.
+
+Open the space: {{ link }}
+
+You get this email because notifications are on for this space. Turn them off in Settings: {{ settings_link }}

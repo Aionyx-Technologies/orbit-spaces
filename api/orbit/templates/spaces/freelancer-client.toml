@@ -1,0 +1,24 @@
+id = "freelancer-client"
+name = "Client project"
+icon = "💼"
+order = 60
+description = "Agree and deliver a project together"
+plan_sections = ["Scope", "Deliverables", "Timeline", "Budget", "To settle"]
+combine_hint = "Keep the agreed scope and budget fixed unless someone proposes a change. Put every change request under To settle."
+tips = ["Write down what is in scope", "Share the brief or reference files", "Set the deadline"]
+
+[[facts]]
+key = "Scope"
+hint = "What is in and out of scope"
+
+[[facts]]
+key = "Deliverables"
+hint = "What will be handed over"
+
+[[facts]]
+key = "Deadline"
+hint = "When the work is due"
+
+[[facts]]
+key = "Budget"
+hint = "The agreed fee or budget"

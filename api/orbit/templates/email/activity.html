@@ -1,0 +1,17 @@
+{% extends "email/base.html" %}
+{% block body %}
+<h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;">What changed in "{{ space }}"</h1>
+<ul style="margin:0 0 20px 0;padding-left:20px;">
+{% for line in lines %}
+<li style="margin:0 0 6px 0;">{{ line }}</li>
+{% endfor %}
+{% if more %}
+<li style="margin:0 0 6px 0;">and {{ more }} more</li>
+{% endif %}
+</ul>
+<p style="margin:0;"><a href="{{ link }}" style="display:inline-block;background:#524ce3;color:#fbfbff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:12px;">Open the space</a></p>
+{% if limit_note %}
+<p style="margin:20px 0 0 0;font-size:14px;color:#52576c;">You have reached the limit of {{ limit_note }} update emails a day. Anything else waits for your next morning summary.</p>
+{% endif %}
+{% endblock %}
+{% block footer %}You get these emails because notifications are on for this space. <a href="{{ settings_link }}" style="color:#524ce3;">Turn them off in Settings</a>.{% endblock %}

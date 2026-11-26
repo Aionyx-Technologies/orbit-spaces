@@ -1,0 +1,6 @@
+id = "general"
+name = "Blank"
+order = 90
+description = "No specific purpose"
+plan_sections = ["Summary", "Next steps", "To settle"]
+tips = ["Share a note or link everyone should see", "Save a standing fact such as a date or a budget"]

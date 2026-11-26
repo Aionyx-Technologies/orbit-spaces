@@ -1,0 +1,33 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	header Strict-Transport-Security "max-age=31536000"
+	header -Server
+
+	@photo path /api/me/avatar
+	@other not path /api/me/avatar
+	request_body @other {
+		max_size 1MB
+	}
+	request_body @photo {
+		max_size 6MB
+	}
+
+	@api path /mcp /mcp/* /oauth/* /auth/* /api/* /.well-known/*
+	handle @api {
+		reverse_proxy {$API_UPSTREAM:api.railway.internal:8000} {
+			flush_interval -1
+			header_up X-Forwarded-For {http.request.header.X-Real-IP}
+			header_up X-Forwarded-Proto https
+		}
+	}
+
+	handle {
+		reverse_proxy {$WEB_UPSTREAM:web.railway.internal:3000} {
+			header_up X-Forwarded-Proto https
+		}
+	}
+}

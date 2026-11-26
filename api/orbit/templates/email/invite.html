@@ -1,0 +1,12 @@
+{% extends "email/base.html" %}
+{% block body %}
+{% if inviter_photo %}
+<img src="{{ inviter_photo }}" width="56" height="56" alt="" style="display:block;border-radius:28px;margin:0 0 16px 0;">
+{% endif %}
+<h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;">{{ inviter }} invited you to "{{ space }}"</h1>
+<p style="margin:0 0 20px 0;">Orbit is a shared space where people who use different AI assistants can share what they are working on. You do not need to install anything.</p>
+<p style="margin:0 0 20px 0;"><a href="{{ link }}" style="display:inline-block;background:#524ce3;color:#fbfbff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:12px;">Join the space</a></p>
+<p style="margin:0 0 16px 0;font-size:14px;color:#52576c;">Or paste this into your browser:<br><span style="word-break:break-all;">{{ link }}</span></p>
+<p style="margin:0;font-size:14px;color:#52576c;">Already use Orbit with an AI assistant? Ask it to show your Orbit invitations.</p>
+{% endblock %}
+{% block footer %}The link works once and expires in {{ days }} days. If you were not expecting this, you can ignore this email.{% endblock %}

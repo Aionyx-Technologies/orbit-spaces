@@ -1,0 +1,39 @@
+name: Bug report
+description: Something in Orbit does not work the way the docs say it should
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not report security problems here. Follow SECURITY.md so the report stays private.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it happen
+      options:
+        - The web app
+        - An AI assistant connector (ChatGPT, Grok, Claude or another)
+        - Sign-in or email
+        - Self-hosting or Docker
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Orbit version or commit
+      description: The version in CHANGELOG.md, or the git commit you built from.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log lines
+      description: Remove sign-in links, tokens and anything a member shared before pasting.
+      render: text

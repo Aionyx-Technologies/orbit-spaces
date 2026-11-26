@@ -1,0 +1,24 @@
+id = "trip"
+name = "Trip"
+icon = "✈️"
+order = 10
+description = "Plan a trip together"
+plan_sections = ["Where to stay", "Getting there", "Things to do", "Costs and splitting", "To settle"]
+combine_hint = "Balance everyone's preferences and respect each person's spending limit. Flag anything the group needs to vote on."
+tips = ["Share a shortlist of places to stay", "Add the dates everyone can make", "Set a budget"]
+
+[[facts]]
+key = "Dates"
+hint = "When you are going"
+
+[[facts]]
+key = "Destination"
+hint = "Where you are headed"
+
+[[facts]]
+key = "Headcount"
+hint = "How many people are coming"
+
+[[facts]]
+key = "Budget"
+hint = "Total or per person"

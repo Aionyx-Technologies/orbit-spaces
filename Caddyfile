@@ -1,0 +1,25 @@
+{$ORBIT_BASE_URL} {
+	@secure protocol https
+	header @secure Strict-Transport-Security "max-age=31536000"
+	header -Server
+
+	@photo path /api/me/avatar
+	@other not path /api/me/avatar
+	request_body @other {
+		max_size 1MB
+	}
+	request_body @photo {
+		max_size 6MB
+	}
+
+	@api path /mcp /mcp/* /oauth/* /auth/* /api/* /.well-known/*
+	handle @api {
+		reverse_proxy api:8000 {
+			flush_interval -1
+		}
+	}
+
+	handle {
+		reverse_proxy web:3000
+	}
+}

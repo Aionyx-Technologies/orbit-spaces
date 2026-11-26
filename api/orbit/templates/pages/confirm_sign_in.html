@@ -1,0 +1,15 @@
+{% extends "pages/base.html" %}
+{% block title %}Finish signing in{% endblock %}
+{% block content %}
+    <h1>Finish signing in</h1>
+    <p class="muted">Press the button to sign in to Orbit on this device as <strong>{{ email }}</strong>.</p>
+    <p class="muted small">Not your email address? Close this page. Someone may have sent you their own link.</p>
+    <form method="post" action="/auth/verify" class="stack">
+      <input type="hidden" name="token" value="{{ token }}">
+      <input type="hidden" name="next" value="{{ next_path }}">
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" autofocus>Continue to Orbit</button>
+      </div>
+    </form>
+    <p class="muted small">This extra step stops email scanners from using up your link before you do.</p>
+{% endblock %}

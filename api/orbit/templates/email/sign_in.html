@@ -1,0 +1,10 @@
+{% extends "email/base.html" %}
+{% block body %}
+<h1 style="margin:0 0 12px 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;">Sign in to Orbit</h1>
+<p style="margin:0 0 20px 0;">Open this link to sign in. It works once and expires in {{ minutes }} minutes.</p>
+<p style="margin:0 0 20px 0;"><a href="{{ link }}" style="display:inline-block;background:#524ce3;color:#fbfbff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:12px;">Sign in</a></p>
+<p style="margin:0 0 8px 0;">Signing in from an assistant such as ChatGPT or Claude? Type this code in the window that asked for it instead:</p>
+<p style="margin:0 0 20px 0;font-size:28px;font-weight:700;letter-spacing:0.12em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;">{{ code }}</p>
+<p style="margin:0;font-size:14px;color:#52576c;">Or paste this into your browser:<br><span style="word-break:break-all;">{{ link }}</span></p>
+{% endblock %}
+{% block footer %}If you did not ask for this, you can ignore this email.{% endblock %}

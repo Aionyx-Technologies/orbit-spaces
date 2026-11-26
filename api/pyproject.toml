@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orbit-api"
+version = "0.1.0"
+description = "Orbit API: MCP endpoint, sign-in, OAuth, REST and database"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+dependencies = [
+  "mcp==2.3.0",
+  "fastapi>=0.165,<1",
+  "uvicorn>=0.54,<1",
+  "sqlalchemy>=2.1,<2.2",
+  "alembic>=1.20,<2",
+  "pydantic>=2.14,<3",
+  "pydantic-settings>=2.16,<3",
+  "httpx>=0.28,<1",
+  "jinja2>=3.1,<4",
+  "python-multipart>=0.0.34",
+  "itsdangerous>=2.2,<3",
+  "email-validator>=2.4,<3",
+  "anthropic>=2.11,<3",
+  "google-genai>=3.6,<4",
+  "pillow>=11,<13",
+  "psycopg[binary]>=3.2,<4",
+  "tzdata>=2024.2",
+  "stripe>=11,<16",
+]
+
+[project.optional-dependencies]
+sentry = ["sentry-sdk>=2.75,<3"]
+backup = ["boto3>=1.44,<2"]
+dev = [
+  "pytest>=9,<10",
+  "pytest-cov>=6",
+  "ruff>=0.17,<1",
+  "mypy>=2.4,<3",
+]
+
+[tool.setuptools.packages.find]
+include = ["orbit*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra --strict-markers --strict-config"
+filterwarnings = ["error::DeprecationWarning:orbit", "error::ResourceWarning"]
+
+[tool.coverage.run]
+source = ["orbit"]
+branch = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "C4", "PIE", "RET", "S", "ASYNC", "PT", "TID", "RUF"]
+ignore = ["RUF012"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["orbit", "tests"]
+known-third-party = ["alembic"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S104", "S105", "S106", "S108", "S311"]
+"alembic/**" = ["E402"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["orbit"]
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["boto3.*", "botocore.*", "sentry_sdk.*"]
+ignore_missing_imports = true

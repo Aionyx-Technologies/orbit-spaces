@@ -1,0 +1,20 @@
+id = "team-project"
+name = "Team project"
+icon = "👥"
+order = 70
+description = "Coordinate work across a team"
+plan_sections = ["Goal", "Tasks and owners", "Timeline", "Risks", "To settle"]
+combine_hint = "Turn what people shared into clear tasks with an owner and a date where they were given. Do not assign owners that nobody named."
+tips = ["State the goal in one line", "Share your part of the plan", "List the risks you can see"]
+
+[[facts]]
+key = "Goal"
+hint = "What the project should achieve"
+
+[[facts]]
+key = "Deadline"
+hint = "When it must be done"
+
+[[facts]]
+key = "Owners"
+hint = "Who is responsible for what"

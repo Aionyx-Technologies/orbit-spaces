@@ -1,0 +1,18 @@
+Your Orbit summary, {{ date }}
+
+{% if held_back_limit %}
+You reached the limit of {{ held_back_limit }} update emails a day, so some of these updates were held back and are bundled here.
+
+{% endif %}
+{% for section in sections %}
+{{ section.space }}
+{% for line in section.lines %}
+- {{ line }}
+{% endfor %}
+{% if section.more %}
+- and {{ section.more }} more
+{% endif %}
+Open {{ section.space }}: {{ section.link }}
+
+{% endfor %}
+{% if held_back_limit %}You get at most {{ held_back_limit }} update emails a day, and the rest wait for this summary. See how you hear about your spaces in Settings: {{ settings_link }}{% else %}You get one summary a day because that is how you chose to hear about your spaces. Change this in Settings: {{ settings_link }}{% endif %}

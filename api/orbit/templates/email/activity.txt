@@ -1,0 +1,15 @@
+What changed in "{{ space }}":
+
+{% for line in lines %}
+- {{ line }}
+{% endfor %}
+{% if more %}
+- and {{ more }} more
+{% endif %}
+
+Open the space: {{ link }}
+
+{% if limit_note %}You have reached the limit of {{ limit_note }} update emails a day. Anything else waits for your next morning summary.
+
+{% endif %}
+You get these emails because notifications are on for this space. Turn them off in Settings: {{ settings_link }}

@@ -1,0 +1,93 @@
+name: orbit
+
+services:
+  api:
+    build:
+      context: ./api
+    image: ghcr.io/aionyx-technologies/orbit-api:${ORBIT_VERSION:-latest}
+    pull_policy: ${ORBIT_PULL_POLICY:-build}
+    restart: unless-stopped
+    stop_grace_period: 30s
+    environment:
+      ORBIT_BASE_URL: ${ORBIT_BASE_URL:?Set ORBIT_BASE_URL in .env}
+      ORBIT_SECRET_KEY: ${ORBIT_SECRET_KEY:?Set ORBIT_SECRET_KEY in .env}
+      ORBIT_ALLOWED_EMAILS: ${ORBIT_ALLOWED_EMAILS:-}
+      ORBIT_DEMO_MODE: ${ORBIT_DEMO_MODE:-}
+      ORBIT_MAX_CREATED_SPACES: ${ORBIT_MAX_CREATED_SPACES:-}
+      ORBIT_MAX_UPDATE_EMAILS_PER_DAY: ${ORBIT_MAX_UPDATE_EMAILS_PER_DAY:-}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/orbit.db}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-Orbit <orbit@localhost>}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      COMBINE_MODEL: ${COMBINE_MODEL:-claude-opus-5-5}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-4-hydrogen}
+      GEMINI_USE_VERTEX: ${GEMINI_USE_VERTEX:-false}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-}
+      ORBIT_AI_PROVIDER: ${ORBIT_AI_PROVIDER:-}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      BACKUP_S3_BUCKET: ${BACKUP_S3_BUCKET:-}
+      BACKUP_S3_ENDPOINT_URL: ${BACKUP_S3_ENDPOINT_URL:-}
+      BACKUP_S3_REGION: ${BACKUP_S3_REGION:-}
+      BACKUP_S3_PREFIX: ${BACKUP_S3_PREFIX:-orbit/}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+      BACKUP_HOUR_UTC: ${BACKUP_HOUR_UTC:-3}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - orbit-data:/data
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    security_opt:
+      - no-new-privileges:true
+
+  web:
+    build:
+      context: ./web
+    image: ghcr.io/aionyx-technologies/orbit-web:${ORBIT_VERSION:-latest}
+    pull_policy: ${ORBIT_PULL_POLICY:-build}
+    restart: unless-stopped
+    environment:
+      ORBIT_API_URL: http://api:8000
+      ORBIT_OPERATOR_NAME: ${ORBIT_OPERATOR_NAME:-}
+      ORBIT_CONTACT_EMAIL: ${ORBIT_CONTACT_EMAIL:-}
+      ORBIT_DATA_LOCATION: ${ORBIT_DATA_LOCATION:-}
+    depends_on:
+      api:
+        condition: service_healthy
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  caddy:
+    image: caddy:2.11-alpine
+    restart: unless-stopped
+    environment:
+      ORBIT_BASE_URL: ${ORBIT_BASE_URL:?Set ORBIT_BASE_URL in .env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - api
+      - web
+
+volumes:
+  orbit-data:
+  caddy-data:
+  caddy-config:

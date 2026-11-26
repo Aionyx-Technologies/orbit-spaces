@@ -1,0 +1,11 @@
+Sign in to Orbit
+
+Open this link to sign in. It works once and expires in {{ minutes }} minutes:
+
+{{ link }}
+
+Signing in from an assistant such as ChatGPT or Claude? Type this code in the window that asked for it instead:
+
+{{ code }}
+
+If you did not ask for this, you can ignore this email.

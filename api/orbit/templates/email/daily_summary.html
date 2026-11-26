@@ -1,0 +1,21 @@
+{% extends "email/base.html" %}
+{% block body %}
+<h1 style="margin:0 0 4px 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;">Your Orbit summary</h1>
+<p style="margin:0 0 20px 0;font-size:14px;color:#52576c;">{{ date }}</p>
+{% if held_back_limit %}
+<p style="margin:0 0 20px 0;">You reached the limit of {{ held_back_limit }} update emails a day, so some of these updates were held back and are bundled here.</p>
+{% endif %}
+{% for section in sections %}
+<h2 style="margin:0 0 8px 0;font-size:17px;line-height:1.3;">{{ section.space }}</h2>
+<ul style="margin:0 0 12px 0;padding-left:20px;">
+{% for line in section.lines %}
+<li style="margin:0 0 6px 0;">{{ line }}</li>
+{% endfor %}
+{% if section.more %}
+<li style="margin:0 0 6px 0;">and {{ section.more }} more</li>
+{% endif %}
+</ul>
+<p style="margin:0 0 24px 0;"><a href="{{ section.link }}" style="color:#524ce3;font-weight:600;">Open {{ section.space }}</a></p>
+{% endfor %}
+{% endblock %}
+{% block footer %}{% if held_back_limit %}You get at most {{ held_back_limit }} update emails a day, and the rest wait for this summary. <a href="{{ settings_link }}" style="color:#524ce3;">See how you hear about your spaces in Settings</a>.{% else %}You get one summary a day because that is how you chose to hear about your spaces. <a href="{{ settings_link }}" style="color:#524ce3;">Change this in Settings</a>.{% endif %}{% endblock %}

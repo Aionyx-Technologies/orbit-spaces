@@ -1,0 +1,16 @@
+{% extends "pages/base.html" %}
+{% block title %}Private testing{% endblock %}
+{% block content %}
+    <h1>Orbit is in a small orbit for now</h1>
+    <p>We are bringing people in a few at a time, and <strong>{{ email }}</strong> is not on the list yet.</p>
+    <p class="muted">Leave your email and we will let you know as soon as a space opens up for you.</p>
+    <form method="post" action="/auth/waitlist" class="stack">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" value="{{ email }}" required>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Join the waitlist</button>
+      </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>{% block title %}Orbit{% endblock %} · Orbit</title>
+<style>
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/geist-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(oklch(0.985 0.004 275), oklch(0.155 0.016 275));
+  --surface: light-dark(oklch(1 0 0 / 0.82), oklch(0.2 0.018 275 / 0.78));
+  --field: light-dark(oklch(1 0 0), oklch(0.2 0.018 275));
+  --text: light-dark(oklch(0.21 0.03 275), oklch(0.965 0.008 275));
+  --muted: light-dark(oklch(0.46 0.035 275), oklch(0.74 0.03 275));
+  --border: light-dark(oklch(0.915 0.01 275), oklch(1 0 0 / 0.1));
+  --border-strong: oklch(0.62 0.03 275);
+  --accent: light-dark(oklch(0.52 0.22 277), oklch(0.76 0.14 280));
+  --accent-hover: light-dark(oklch(0.47 0.22 277), oklch(0.82 0.12 280));
+  --accent-text: light-dark(oklch(0.99 0.005 277), oklch(0.17 0.03 277));
+  --accent-soft: light-dark(oklch(0.945 0.04 277), oklch(0.3 0.07 277));
+  --ember: light-dark(oklch(0.8 0.15 70), oklch(0.82 0.15 75));
+  --danger: light-dark(oklch(0.5 0.2 27), oklch(0.76 0.15 25));
+  --danger-soft: light-dark(oklch(0.95 0.03 27), oklch(0.27 0.06 25));
+  --focus: var(--accent);
+  --radius: 22px;
+  --shadow-ink: light-dark(oklch(0.25 0.08 275 / 0.14), oklch(0 0 0 / 0.55));
+  --shadow-soft: light-dark(oklch(0.25 0.08 275 / 0.05), oklch(0 0 0 / 0.25));
+  --shadow: 0 1px 2px var(--shadow-soft), 0 18px 40px -18px var(--shadow-ink);
+  --aurora-a: light-dark(oklch(0.93 0.07 277 / 0.85), oklch(0.34 0.13 277 / 0.5));
+  --aurora-b: light-dark(oklch(0.95 0.05 210 / 0.75), oklch(0.32 0.09 215 / 0.38));
+  --aurora-c: light-dark(oklch(0.96 0.05 70 / 0.5), oklch(0.34 0.09 55 / 0.22));
+}
+* { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: transparent;
+  color: var(--text);
+  font: 16px/1.55 "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(62rem 34rem at 12% -12%, var(--aurora-a), transparent 70%),
+    radial-gradient(48rem 28rem at 94% -6%, var(--aurora-b), transparent 70%),
+    radial-gradient(40rem 24rem at 60% 4%, var(--aurora-c), transparent 72%);
+}
+main { width: 100%; max-width: 27rem; }
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+.brand svg { color: var(--accent); }
+.brand span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.card {
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.25rem 1.9rem;
+  box-shadow: var(--shadow);
+}
+h1 {
+  margin: 0 0 0.6rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+@media (max-width: 29.99rem) {
+  h1 { font-size: 1.75rem; }
+}
+p { margin: 0 0 1rem; }
+.muted { color: var(--muted); }
+.small { font-size: 0.9375rem; }
+strong { font-weight: 600; }
+a { color: var(--accent); text-underline-offset: 3px; }
+label { display: block; margin-bottom: 0.4rem; font-weight: 550; }
+input[type="email"], input[type="text"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+}
+input::placeholder { color: var(--muted); opacity: 1; }
+.field { position: relative; }
+.field-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.95rem;
+  translate: 0 -50%;
+  color: var(--muted);
+  pointer-events: none;
+}
+.field input { padding-left: 2.9rem; }
+.field:focus-within .field-icon { color: var(--accent); }
+input[type="email"]:hover { border-color: var(--text); }
+input[type="email"]:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+.btn { gap: 0.5rem; }
+.next {
+  margin-top: 1.75rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+.next-title {
+  margin: 0 0 0.9rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.trail {
+  position: relative;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+.trail::before {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  left: 0.3rem;
+  border-left: 1px dashed var(--border-strong);
+}
+.trail li {
+  position: relative;
+  padding-left: 1.75rem;
+}
+.trail li + li { margin-top: 0.6rem; }
+.trail li::before {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--field);
+}
+.trail li:last-child::before {
+  border-color: var(--ember);
+  background: var(--ember);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ember) 28%, transparent);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-text);
+  box-shadow: 0 10px 26px -12px var(--accent), inset 0 1px 0 oklch(1 0 0 / 0.28);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--accent-soft); }
+.btn-link {
+  width: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.stack > * + * { margin-top: 0.85rem; }
+form + p { margin-top: 1.4rem; }
+.actions { display: grid; gap: 0.65rem; margin-top: 1.25rem; }
+.alert {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 14px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.9375rem;
+}
+.notice {
+  margin: 0 0 1.1rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  font-size: 0.9375rem;
+}
+ul.plain { margin: 0 0 1rem; padding-left: 1.2rem; }
+ul.plain li + li { margin-top: 0.3rem; }
+.foot { margin: 1.25rem 0 0; text-align: center; font-size: 0.875rem; color: var(--muted); }
+.foot + .foot { margin-top: 0.375rem; }
+.who { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.who form { margin: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn:active { transform: scale(0.98); }
+}
+@media (forced-colors: active) {
+  body::before { display: none; }
+  input[type="email"]:focus-visible { outline: 2px solid; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2.8"/>
+      <circle cx="16" cy="16" r="4.1" fill="currentColor"/>
+      <circle cx="25.12" cy="9.85" r="3.5" fill="var(--ember)"/>
+    </svg>
+    <span>Orbit</span>
+  </div>
+  <div class="card">
+{% block content %}{% endblock %}
+  </div>
+  <p class="foot">{% block foot %}<a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/data-policy">Data policy</a> · <a href="/disclaimer">Disclaimer</a>{% endblock %}</p>
+  <p class="foot">Orbit is a product of Aionyx Technologies, Inc. · <a href="mailto:hello@orbitspaces.ai">hello@orbitspaces.ai</a></p>
+</main>
+</body>
+</html>
