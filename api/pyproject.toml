@@ -30,7 +30,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-sentry = ["sentry-sdk>=2.75,<3"]
+sentry = ["sentry-sdk>=2.75,<4"]
 backup = ["boto3>=1.44,<2"]
 dev = [
   "pytest>=9,<10",
