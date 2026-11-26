@@ -6,9 +6,11 @@ Every release lists the database migrations it runs, under a **Migrations** head
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-26
+
 ### Changed
 
-- Orbit is now licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only) instead of Apache-2.0. If you run a modified copy that other people use over a network, you must offer them the source of your version. The landing page footer gains a **Source code** link and the terms page links to the source; both read `SOURCE_URL` in `web/lib/legal.ts`. The container images are labelled `AGPL-3.0-only`. Contributions are still certified with a DCO sign-off and come in under the same licence. The names and logos remain outside the licence (see TRADEMARK.md).
+- Orbit is licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only). If you run a modified copy that other people use over a network, you must offer them the source of your version. The landing page footer gains a **Source code** link and the terms page links to the source; both read `SOURCE_URL` in `web/lib/legal.ts`. The container images are labelled `AGPL-3.0-only`. Contributions are still certified with a DCO sign-off and come in under the same licence. The names and logos remain outside the licence (see TRADEMARK.md).
 
 ### Added
 
@@ -43,7 +45,7 @@ Every release lists the database migrations it runs, under a **Migrations** head
 - Nightly SQLite backup to S3-compatible storage with 14-day retention, optional Sentry error tracking with strict scrubbing, and `/api/health` for uptime checks.
 - `docker-compose.yml` with Caddy, api and web; a Railway variant of the Caddy setup; GitHub Actions CI; guides for self-hosting, Railway, ChatGPT, Grok and Claude; a data policy.
 - Demo mode (`ORBIT_DEMO_MODE=true`, off by default, refused unless the server address is localhost): "Continue as Alex" and "Continue as Blake" buttons on the home page and the sign-in page that skip the email and open two test accounts with a sample space.
-- Apache-2.0 licence, contributing guide, code of conduct and security policy.
+- AGPL-3.0-only licence, contributing guide, code of conduct and security policy.
 - Pending spaces. An invitation sent to an email address now waits on that person's Spaces page, where they can join or decline it, instead of living only in an emailed link (`GET /api/invitations`, `POST /api/invitations/{id}/accept`, `POST /api/invitations/{id}/decline`). Only the person the invitation was sent to can list or answer it, an id that belongs to someone else gets the same "not valid" answer as one that does not exist, and the response never includes the space, the token or the inviter's address. Declining makes the emailed link stop working.
 - Spaces page filters and search: **All**, **Yours**, **Shared with you** and **Pending** with counts, search across names, people, assistants and shared facts, sort by recent activity, name or date created, and a grid or compact list layout that is remembered.
 - Space cards that summarise what is inside. `GET /api/spaces` and `POST /api/spaces` now also return `owner_name`, `last_activity_at`, `note_count`, `fact_count`, `has_plan`, `highlights` (up to three current facts), `latest` (title, kind and who, never the content) and `sources` (the assistants used), with a fixed number of database queries however many spaces there are.
@@ -120,4 +122,3 @@ These run by themselves when the api starts and only move forward. Take a backup
 - An invitation link created without an email address cannot appear under Pending spaces, because Orbit does not know who it is for. Only the link works for those.
 - One api process, SQLite on one volume, no push notifications, no permission levels beyond member or not a member.
 - No independent human review of the sign-in and OAuth code yet.
-- Not yet exercised against real ChatGPT, Grok or Claude accounts, a real Railway project, or real object storage.
