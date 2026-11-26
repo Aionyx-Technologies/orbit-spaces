@@ -1,5 +1,5 @@
 import { screen, waitFor, within } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, onTestFinished, vi } from "vitest";
 
 import { PendingCard } from "@/components/spaces/pending-card";
 import type { PendingCardProps } from "@/components/spaces/pending-card.types";
@@ -27,6 +27,12 @@ function setup(overrides: Partial<PendingCardProps> = {}) {
 
 describe("PendingCard", () => {
   it("is an article named after the space, saying who invited you and what happens next", () => {
+    // The fixture expires on a fixed date, so pin the clock to a day before it.
+    vi.useFakeTimers({ toFake: ["Date"] });
+    vi.setSystemTime(new Date("2026-11-20T09:00:00Z"));
+    onTestFinished(() => {
+      vi.useRealTimers();
+    });
     setup();
 
     const card = screen.getByRole("article", { name: "Weekend in Lisbon" });
