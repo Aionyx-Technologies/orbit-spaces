@@ -115,6 +115,16 @@ describe("Landing", () => {
     expect(footer.getByText(/All rights reserved/)).toBeInTheDocument();
   });
 
+  it("says it is open source and links to the code near the top", () => {
+    renderPlain(<Landing />);
+
+    expect(screen.getByText(/Open source under AGPL-3\.0\./)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "View the code on GitHub" })).toHaveAttribute(
+      "href",
+      "https://github.com/Aionyx-Technologies/orbit-spaces",
+    );
+  });
+
   it("links to the source code from the footer", () => {
     renderPlain(<Landing />);
 
