@@ -70,7 +70,7 @@ jobs:
           labels: |
             org.opencontainers.image.title=Orbit ${{ matrix.service }}
             org.opencontainers.image.licenses=AGPL-3.0-only
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: ./${{ matrix.service }}
           target: runtime
