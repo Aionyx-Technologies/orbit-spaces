@@ -1,26 +1,49 @@
 version: 2
+
+# One weekly PR per ecosystem for minor and patch updates; major updates still
+# come one at a time because they are the ones that can break things. The
+# open-PR limits keep CI from being flooded on a Free plan's job concurrency.
+
 updates:
   - package-ecosystem: pip
     directory: /api
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    groups:
+      pip-minor-and-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: npm
     directory: /web
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: docker
-    directory: /api
+    directories:
+      - /api
+      - /web
+      - /deploy/railway
     schedule:
       interval: weekly
-  - package-ecosystem: docker
-    directory: /web
-    schedule:
-      interval: weekly
-  - package-ecosystem: docker
-    directory: /deploy/railway
-    schedule:
-      interval: weekly
+      day: monday
+    open-pull-requests-limit: 2
+    groups:
+      docker-minor-and-patch:
+        update-types: [minor, patch]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 2
+    groups:
+      actions-minor-and-patch:
+        update-types: [minor, patch]
